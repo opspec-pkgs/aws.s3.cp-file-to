@@ -3,7 +3,6 @@ name: github.com/opspec-pkgs/aws.s3.cp-file-to
 inputs:
   srcFile:
     file:
-      default: .
       description: file to copy
   s3Uri:
     string:

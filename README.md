@@ -34,9 +34,9 @@ op:
     accessKeyId:
     s3Uri:
     secretAccessKey:
+    srcFile:
     ### optional; uncomment to override default(s)
     # region: us-west-2
-    # srcFile: .
 ```
 
 # Support
