@@ -1,0 +1,41 @@
+description: "copies a file to s3"
+name: github.com/opspec-pkgs/aws.s3.cp-file-to
+inputs:
+  srcFile:
+    file:
+      default: .
+      description: file to copy
+  s3Uri:
+    string:
+      description: "where to copy to"
+      constraints: { format: uri }
+  accessKeyId:
+    string:
+      constraints: { minLength: 20 }
+      description: access key for AWS
+  secretAccessKey:
+    string:
+      constraints: { minLength: 20 }
+      description: secret access key for AWS
+  region:
+    string:
+      constraints: { minLength: 1 }
+      description: default region
+      default: us-west-2
+opspec: 0.1.6
+version: 1.0.0
+run:
+  container:
+    cmd:
+      - aws
+      - s3
+      - cp
+      - /srcFile
+      - $(s3Uri)
+    files:
+      /srcFile: $(srcFile)
+    envVars:
+      AWS_ACCESS_KEY_ID: $(accessKeyId)
+      AWS_SECRET_ACCESS_KEY: $(secretAccessKey)
+      AWS_DEFAULT_REGION: $(region)
+    image: { ref: 'opspecpkgs/aws.s3.cp-file-to:1.0.0' }
